@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { registerUser } from "../api";
+
 
 const Register = () => {
   const [name, setName] = useState("");

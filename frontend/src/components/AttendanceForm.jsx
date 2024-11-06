@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { markAttendance } from "../api";
+
 
 const AttendanceForm = () => {
   const [studentId, setStudentId] = useState("");
