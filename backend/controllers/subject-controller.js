@@ -1,34 +1,43 @@
 const Subject = require('../models/subjectSchema.js');
 const Teacher = require('../models/teacherSchema.js');
 const Student = require('../models/studentSchema.js');
-
 const subjectCreate = async (req, res) => {
     try {
-        const subjects = req.body.subjects.map((subject) => ({
-            subName: subject.subName,
-            subCode: subject.subCode,
-            sessions: subject.sessions,
-        }));
+        // Destructure the subject properties from the request body
+        const { subName, subCode, sessions, school, sclassName } = req.body;
 
+        // Validate input fields
+        if (!subName || !subCode || !sessions || !school || !sclassName) {
+            return res.status(400).json({ message: 'All fields are required: subName, subCode, sessions, school, sclassName' });
+        }
+
+        // Check if subject with the same subCode already exists
         const existingSubjectBySubCode = await Subject.findOne({
-            'subjects.subCode': subjects[0].subCode,
-            school: req.body.adminID,
+            subCode,
+            school,
         });
 
         if (existingSubjectBySubCode) {
-            res.send({ message: 'Sorry this subcode must be unique as it already exists' });
-        } else {
-            const newSubjects = subjects.map((subject) => ({
-                ...subject,
-                sclassName: req.body.sclassName,
-                school: req.body.adminID,
-            }));
-
-            const result = await Subject.insertMany(newSubjects);
-            res.send(result);
+            return res.status(400).json({ message: 'This subcode must be unique as it already exists' });
         }
+
+        // Create the new subject object
+        const newSubject = {
+            subName,
+            subCode,
+            sessions,
+            sclassName,
+            school,
+        };
+
+        // Insert the new subject into the database (no need for `map` here)
+        const result = await Subject.create(newSubject);  // Use create instead of insertMany for a single object
+
+        // Send a successful response
+        res.status(201).json(result);
     } catch (err) {
-        res.status(500).json(err);
+        console.error('Error creating subject:', err);  // Log the error for debugging
+        res.status(500).json({ message: 'Internal server error', error: err.message });
     }
 };
 

@@ -3,28 +3,28 @@ const mongoose = require("mongoose");
 const subjectSchema = new mongoose.Schema({
     subName: {
         type: String,
-        required: true,
+        // required: true,
     },
     subCode: {
         type: String,
-        required: true,
+        // required: true,
     },
     sessions: {
         type: String,
-        required: true,
+        // required: true,
     },
     sclassName: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'sclass',
-        required: true,
+        type: String,//mongoose.Schema.Types.ObjectId,
+        ref: 'classe',
+        // required: true,
     },
     school: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'admin'
+        type:String,// mongoose.Schema.Types.ObjectId,
+        // ref: 'admin'
     },
     teacher: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'teacher',
+        type:String,// mongoose.Schema.Types.ObjectId,
+        // ref: 'teacher',
     }
 }, { timestamps: true });
 

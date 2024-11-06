@@ -11,5 +11,5 @@ const sclassSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-module.exports = mongoose.model("sclass", sclassSchema);
+module.exports = mongoose.model("classe", sclassSchema);
 

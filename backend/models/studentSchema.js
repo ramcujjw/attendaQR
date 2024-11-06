@@ -14,12 +14,12 @@
             required: true
         },
         sclassName: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'sclass',
+            type: String,//mongoose.Schema.Types.ObjectId,
+            // ref: 'classe',
             required: true,
         },
         school: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,//mongoose.Schema.Types.ObjectId,
             ref: 'admin',
             required: true,
         },
@@ -27,34 +27,34 @@
             type: String,
             default: "Student"
         },
-        examResult: [
-            {
-                subName: {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: 'subject',
-                },
-                marksObtained: {
-                    type: Number,
-                    default: 0
-                }
-            }
-        ],
-        attendance: [{
-            date: {
-                type: Date,
-                required: true
-            },
-            status: {
-                type: String,
-                enum: ['Present', 'Absent'],
-                required: true
-            },
-            subName: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'subject',
-                required: true
-            }
-        }]
+        // examResult: [
+        //     {
+        //         subName: {
+        //             type: mongoose.Schema.Types.ObjectId,
+        //             ref: 'subject',
+        //         },
+        //         marksObtained: {
+        //             type: Number,
+        //             default: 0
+        //         }
+        //     }
+        // ],
+        // attendance: [{
+        //     date: {
+        //         type: Date,
+        //         required: false
+        //     },
+        //     status: {
+        //         type: String,
+        //         enum: ['Present', 'Absent'],
+        //         required: false
+        //     },
+        //     subName: {
+        //         type: mongoose.Schema.Types.ObjectId,
+        //         ref: 'subject',
+        //         required: false
+        //     }
+        // }]
     });
 
     module.exports = mongoose.model("student", studentSchema);

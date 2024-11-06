@@ -19,31 +19,31 @@ const teacherSchema = new mongoose.Schema({
         default: "Teacher"
     },
     school: {
-        type: mongoose.Schema.Types.ObjectId,
+        type:String,//mongoose.Schema.Types.ObjectId,
         ref: 'admin',
         required: true,
     },
     teachSubject: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'subject',
+        type:String, //mongoose.Schema.Types.ObjectId,
+        // ref: 'subject',
     },
     teachSclass: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'sclass',
+        type:String,// mongoose.Schema.Types.ObjectId,
+        // ref: 'classe',
         required: true,
     },
-    attendance: [{
-        date: {
-            type: Date,
-            required: true
-        },
-        presentCount: {
-            type: String,
-        },
-        absentCount: {
-            type: String,
-        }
-    }]
+    // attendance: [{
+    //     date: {
+    //         type: Date,
+    //         required: true
+    //     },
+    //     presentCount: {
+    //         type: String,
+    //     },
+    //     absentCount: {
+    //         type: String,
+    //     }
+    // }]
 }, { timestamps: true });
 
 module.exports = mongoose.model("teacher", teacherSchema)
