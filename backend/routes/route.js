@@ -23,6 +23,8 @@ const {
 const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
 
+const qrController = require('../controllers/qrController');
+
 // Admin
 router.post('/AdminReg', adminRegister);
 router.post('/AdminLogin', adminLogIn);
@@ -73,7 +75,11 @@ router.put("/TeacherSubject", updateTeacherSubject)
 router.post('/TeacherAttendance/:id', teacherAttendance)
 
 
+// Route for teachers to generate QR code for a session
+router.post('/generate-qr', qrController.generateQrCode);
 
+// Route for students to mark attendance by scanning the QR code
+router.post('/mark-attendance', qrController.markAttendance);
 
 
 // Sclass

@@ -3,29 +3,23 @@ const mongoose = require("mongoose");
 const subjectSchema = new mongoose.Schema({
     subName: {
         type: String,
-        // required: true,
     },
     subCode: {
         type: String,
-        // required: true,
     },
     sessions: {
         type: String,
-        // required: true,
     },
     sclassName: {
-        type: String,//mongoose.Schema.Types.ObjectId,
-        ref: 'classe',
-        // required: true,
+        type: String, // Or ObjectId if you ref to Sclass
     },
     school: {
-        type:String,// mongoose.Schema.Types.ObjectId,
-        // ref: 'admin'
+        type: String, // Or ObjectId if you ref to Admin
     },
     teacher: {
-        type:String,// mongoose.Schema.Types.ObjectId,
-        // ref: 'teacher',
+        type: String, // Or ObjectId if you ref to Teacher
     }
 }, { timestamps: true });
+
 
 module.exports = mongoose.model("subject", subjectSchema);

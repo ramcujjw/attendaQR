@@ -1,32 +1,39 @@
-    const mongoose = require('mongoose');
+const mongoose=require ('mongoose')
 
-    const studentSchema = new mongoose.Schema({
-        name: {
-            type: String,
-            required: true
-        },
-        rollNum: {
-            type: Number,
-            required: true
-        },
-        password: {
-            type: String,
-            required: true
-        },
-        sclassName: {
-            type: String,//mongoose.Schema.Types.ObjectId,
-            // ref: 'classe',
-            required: true,
-        },
-        school: {
-            type: String,//mongoose.Schema.Types.ObjectId,
-            ref: 'admin',
-            required: true,
-        },
-        role: {
-            type: String,
-            default: "Student"
-        },
+const studentSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    rollNum: {
+        type: Number,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    sclassName: {
+        type: String, // Or change to ObjectId if you ref to Sclass
+        required: true,
+    },
+    school: {
+        type: String, // Change to ObjectId if you ref to Admin
+        ref: 'admin',
+        required: true,
+    },
+    role: {
+        type: String,
+        default: "Student"
+    },
+    attendance: [{
+        subName: { type: String, required: true },  // The subject name
+        date: { type: Date, required: true },      // The date of the attendance
+        status: { type: Boolean, default: false }   // Mark as present (true) or absent (false)
+    }]
+
+
+
         // examResult: [
         //     {
         //         subName: {

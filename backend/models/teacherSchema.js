@@ -3,35 +3,39 @@ const mongoose = require("mongoose")
 const teacherSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
         unique: true,
-        required: true,
+        required: true
     },
     password: {
         type: String,
-        required: true,
+        required: true
     },
     role: {
         type: String,
-        default: "Teacher"
+        default: 'Teacher'
     },
     school: {
-        type:String,//mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'admin',
-        required: true,
+        required: true
     },
     teachSubject: {
-        type:String, //mongoose.Schema.Types.ObjectId,
-        // ref: 'subject',
+        type: String, // You can later link this to the `subjectSchema` if needed
     },
     teachSclass: {
-        type:String,// mongoose.Schema.Types.ObjectId,
-        // ref: 'classe',
-        required: true,
+        type: String,  // You can link this to the `sclassSchema` if needed
+        required: true
     },
+    sessions: [{  // Optional: If you want to link multiple sessions for each teacher
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Session'
+    }]
+
+
     // attendance: [{
     //     date: {
     //         type: Date,
